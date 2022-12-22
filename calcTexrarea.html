@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+   
+          <meta charset="UTF-8"/>
+          <meta name="viewport" content="width=device-width ,initial-scale=1.0" />
+          <title>calc textareaa</title>
+        
+          <style>
+              
+                 #app{
+                 display: flex;
+                 align-items: center;
+                 justify-content: center;
+                 flex-direction: column;
+             }
+             
+              
+              h1{
+                  font-family: cursive;
+              }
+              
+              textarea{
+                  width: 400px;
+                  height: 200px;
+                  resize: none;
+                  background: #eee;
+                  border: 1px solid #ccc;
+                  
+              }
+              
+              .counter{
+                  display: block;
+                  text-align: right;
+                  padding-top: 10px;
+              }
+              
+              .counter.zero{
+                  color: red;
+              }
+          </style>
+        
+    </head>
+    <body>
+        
+        
+        <div id="app" class="container">
+            
+            <h1> calc textarea characters </h1>
+            <h4>write your message ({{maxlength}}) characters Allowed</h4>
+            <textarea @input="countchars" v-model="message" :maxlength="maxlength"></textarea>
+            <span class="counter" :class="{'zero':reachZero}">
+                
+                left|<span>{{remainingchars}}</span>
+            
+            </span>
+            
+        </div>
+        
+        
+    
+    <!--  <script src="vue.js"></script>-->
+    <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>   
+        
+    <script>
+        
+        var inst1 = new Vue({
+            
+            el:"#app",
+            data:{
+                
+                maxlength:10,
+                remainingchars:10,
+                message:null,
+                reachZero:false,
+               
+            },
+            methods:{
+                
+                countchars:function(){
+                    this.remainingchars =this.maxlength - this.message.length;
+                    this.reachZero = this.remainingchars === 0;
+                    
+                }
+              
+                
+            }
+            
+            
+            
+            
+            
+        })
+     
+        
+    
+        
+        
+        
+        
+        
+        
+   </script>
+        
+    </body>
+</html>
